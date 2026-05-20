@@ -1,0 +1,660 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Private Premium Access</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+content:'';
+position:fixed;
+width:500px;
+height:500px;
+background:radial-gradient(circle,#ff003c30,transparent 70%);
+top:-100px;
+left:-100px;
+z-index:-1;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:400px;
+height:400px;
+background:radial-gradient(circle,#ffcc0030,transparent 70%);
+bottom:-100px;
+right:-100px;
+z-index:-1;
+}
+
+/* MAIN */
+
+.container{
+max-width:500px;
+margin:auto;
+padding-bottom:120px;
+}
+
+/* HERO IMAGE */
+
+.hero{
+position:relative;
+padding:15px;
+}
+
+.hero img{
+width:100%;
+border-radius:25px;
+object-fit:cover;
+height:430px;
+}
+
+/* ONLINE BADGE */
+
+.online{
+position:absolute;
+top:28px;
+left:28px;
+background:#1c1c1c;
+padding:8px 18px;
+border-radius:50px;
+font-size:14px;
+display:flex;
+align-items:center;
+gap:8px;
+font-weight:500;
+backdrop-filter:blur(10px);
+}
+
+.online span{
+width:10px;
+height:10px;
+background:#00ff6a;
+border-radius:50%;
+display:block;
+}
+
+/* VIDEO CALL BADGE */
+
+.video-call{
+position:absolute;
+right:25px;
+bottom:30px;
+background:#0c2519;
+border:1px solid #00ff7f50;
+padding:10px 18px;
+border-radius:50px;
+font-size:13px;
+font-weight:500;
+color:#5effaf;
+backdrop-filter:blur(10px);
+}
+
+/* PROFILE */
+
+.profile{
+padding:0 20px;
+margin-top:-5px;
+}
+
+.name{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:40px;
+font-weight:700;
+}
+
+.verify{
+width:22px;
+height:22px;
+background:#0095ff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+}
+
+.sub{
+margin-top:5px;
+font-size:17px;
+color:#bcbcbc;
+}
+
+.join-box{
+margin-top:18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#111;
+padding:16px;
+border-radius:18px;
+border:1px solid #222;
+}
+
+.join-box .left{
+font-size:16px;
+font-weight:600;
+}
+
+.join-box .right{
+font-size:15px;
+color:#63ff95;
+}
+
+/* OFFER */
+
+.offer{
+margin:25px 18px;
+padding:20px;
+border-radius:25px;
+background:linear-gradient(135deg,#33000d,#130000);
+border:1px solid #ff003c50;
+box-shadow:0 0 25px #ff003c20;
+}
+
+.offer-title{
+color:#ff466e;
+font-size:14px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+.price{
+margin-top:12px;
+font-size:18px;
+}
+
+.price del{
+opacity:.4;
+margin-left:10px;
+}
+
+.timer{
+margin-top:18px;
+display:flex;
+gap:12px;
+justify-content:center;
+}
+
+.time-box{
+background:#111;
+width:85px;
+padding:14px 0;
+text-align:center;
+border-radius:18px;
+border:1px solid #222;
+}
+
+.time-box h2{
+font-size:32px;
+}
+
+.time-box p{
+font-size:12px;
+opacity:.7;
+margin-top:5px;
+}
+
+/* PREVIEW */
+
+.section-title{
+padding:0 20px;
+font-size:30px;
+font-weight:700;
+margin-top:35px;
+margin-bottom:20px;
+}
+
+.previews{
+display:flex;
+overflow-x:auto;
+gap:18px;
+padding:0 20px;
+scrollbar-width:none;
+}
+
+.previews::-webkit-scrollbar{
+display:none;
+}
+
+.card{
+min-width:220px;
+height:330px;
+border-radius:25px;
+position:relative;
+overflow:hidden;
+background:#111;
+border:1px solid #222;
+}
+
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:blur(12px) brightness(.5);
+}
+
+.lock{
+position:absolute;
+top:15px;
+right:15px;
+background:#00000080;
+width:45px;
+height:45px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+backdrop-filter:blur(10px);
+}
+
+.hd{
+position:absolute;
+top:15px;
+left:15px;
+background:#000000b5;
+padding:5px 12px;
+border-radius:12px;
+font-size:13px;
+font-weight:600;
+}
+
+.card-bottom{
+position:absolute;
+bottom:18px;
+left:18px;
+right:18px;
+}
+
+.card-bottom h3{
+font-size:20px;
+}
+
+.card-bottom p{
+font-size:14px;
+opacity:.8;
+margin-top:6px;
+}
+
+/* CTA */
+
+.cta{
+margin:35px 18px;
+padding:22px;
+border-radius:28px;
+background:linear-gradient(135deg,#111,#1d1d1d);
+border:1px solid #2a2a2a;
+}
+
+.cta h2{
+font-size:33px;
+line-height:1.2;
+}
+
+.cta p{
+margin-top:12px;
+color:#c8c8c8;
+line-height:1.7;
+}
+
+.cta-btn{
+margin-top:22px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:linear-gradient(90deg,#ffcc00,#ffea70);
+padding:18px 22px;
+border-radius:22px;
+text-decoration:none;
+color:black;
+font-weight:700;
+font-size:18px;
+box-shadow:0 0 30px #ffcc0040;
+}
+
+/* PAYMENTS */
+
+.payments{
+margin-top:28px;
+display:flex;
+justify-content:center;
+gap:16px;
+flex-wrap:wrap;
+}
+
+.payments div{
+background:#101010;
+padding:12px 18px;
+border-radius:14px;
+border:1px solid #222;
+font-weight:600;
+}
+
+/* REVIEWS */
+
+.reviews{
+padding:20px;
+}
+
+.review{
+background:#111;
+padding:18px;
+border-radius:22px;
+margin-bottom:18px;
+border:1px solid #222;
+}
+
+.review h4{
+font-size:18px;
+margin-bottom:8px;
+}
+
+.review p{
+color:#c5c5c5;
+line-height:1.6;
+}
+
+/* STICKY BUTTON */
+
+.sticky{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+padding:15px;
+background:#050505f2;
+backdrop-filter:blur(20px);
+border-top:1px solid #222;
+}
+
+.sticky a{
+display:flex;
+justify-content:center;
+align-items:center;
+height:65px;
+border-radius:20px;
+text-decoration:none;
+background:linear-gradient(90deg,#ff003c,#ff5b7d);
+color:white;
+font-size:20px;
+font-weight:700;
+box-shadow:0 0 25px #ff003c50;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+.hero img{
+height:400px;
+}
+
+.name{
+font-size:32px;
+}
+
+.cta h2{
+font-size:28px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HERO -->
+
+<div class="hero">
+
+<img src="YOUR-IMAGE.jpg" alt="model">
+
+<div class="online">
+<span></span>
+ONLINE
+</div>
+
+<div class="video-call">
+📹 PRIVATE CHAT & VIDEO CALL
+</div>
+
+</div>
+
+<!-- PROFILE -->
+
+<div class="profile">
+
+<div class="name">
+Ayesha Khan
+<div class="verify">✓</div>
+</div>
+
+<div class="sub">
+Exclusive Content & Private Access
+</div>
+
+<div class="join-box">
+<div class="left">
+🔥 200+ Premium Photos/Videos
+</div>
+
+<div class="right">
+5,842+ Joined
+</div>
+</div>
+
+</div>
+
+<!-- OFFER -->
+
+<div class="offer">
+
+<div class="offer-title">
+SPECIAL PRICE ENDS IN
+</div>
+
+<div class="price">
+Save 83% • ₹199
+<del>₹899</del>
+</div>
+
+<div class="timer">
+
+<div class="time-box">
+<h2 id="hours">00</h2>
+<p>HRS</p>
+</div>
+
+<div class="time-box">
+<h2 id="minutes">52</h2>
+<p>MIN</p>
+</div>
+
+<div class="time-box">
+<h2 id="seconds">14</h2>
+<p>SEC</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- PREVIEWS -->
+
+<div class="section-title">
+PREVIEWS
+</div>
+
+<div class="previews">
+
+<div class="card">
+
+<img src="preview1.jpg">
+
+<div class="lock">🔒</div>
+<div class="hd">HD</div>
+
+<div class="card-bottom">
+<h3>Full Video</h3>
+<p>39 min inside private group</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="preview2.jpg">
+
+<div class="lock">🔒</div>
+<div class="hd">HD</div>
+
+<div class="card-bottom">
+<h3>VIP Content</h3>
+<p>47 min private access</p>
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="preview3.jpg">
+
+<div class="lock">🔒</div>
+<div class="hd">HD</div>
+
+<div class="card-bottom">
+<h3>Exclusive Gallery</h3>
+<p>Premium members only</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- CTA -->
+
+<div class="cta">
+
+<h2>
+Unlock Private Premium Access
+</h2>
+
+<p>
+Get instant access to exclusive private content, premium galleries, hidden previews, and VIP features available only for members.
+</p>
+
+<a href="payment.html" class="cta-btn">
+JOIN PRIVATE GROUP →
+</a>
+
+<div class="payments">
+
+<div>GPay</div>
+<div>PhonePe</div>
+<div>Paytm</div>
+<div>UPI</div>
+
+</div>
+
+</div>
+
+<!-- REVIEWS -->
+
+<div class="reviews">
+
+<div class="review">
+<h4>⭐ Premium Experience</h4>
+<p>
+The private content quality is honestly insane. Smooth access and premium vibe throughout.
+</p>
+</div>
+
+<div class="review">
+<h4>🔥 Worth Every Rupee</h4>
+<p>
+Much better than other random groups. Feels luxurious and exclusive.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- STICKY -->
+
+<div class="sticky">
+<a href="payment.html">
+UNLOCK NOW • ₹199
+</a>
+</div>
+
+<script>
+
+/* FAKE COUNTDOWN */
+
+let hours = 0;
+let minutes = 52;
+let seconds = 14;
+
+setInterval(() => {
+
+seconds--;
+
+if(seconds < 0){
+seconds = 59;
+minutes--;
+}
+
+if(minutes < 0){
+minutes = 59;
+hours--;
+}
+
+if(hours < 0){
+hours = 0;
+minutes = 52;
+seconds = 14;
+}
+
+document.getElementById("hours").innerText =
+String(hours).padStart(2,'0');
+
+document.getElementById("minutes").innerText =
+String(minutes).padStart(2,'0');
+
+document.getElementById("seconds").innerText =
+String(seconds).padStart(2,'0');
+
+},1000);
+
+</script>
+
+</body>
+</html>
