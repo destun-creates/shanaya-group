@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>VIP Payment Access</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+/* BACKGROUND GLOW */
+
+body::before{
+content:'';
+position:fixed;
+width:450px;
+height:450px;
+background:radial-gradient(circle,#ff005530,transparent 70%);
+top:-100px;
+left:-100px;
+z-index:-1;
+}
+
+body::after{
+content:'';
+position:fixed;
+width:450px;
+height:450px;
+background:radial-gradient(circle,#ffcc0030,transparent 70%);
+bottom:-100px;
+right:-100px;
+z-index:-1;
+}
+
+/* MAIN */
+
+.container{
+max-width:500px;
+margin:auto;
+padding:20px;
+padding-bottom:120px;
+}
+
+/* TOP */
+
+.top{
+text-align:center;
+margin-top:15px;
+}
+
+.vip-badge{
+display:inline-block;
+padding:10px 22px;
+border-radius:50px;
+background:linear-gradient(90deg,#ff0055,#ffcc00);
+font-weight:700;
+font-size:14px;
+color:black;
+box-shadow:0 0 25px #ff005550;
+}
+
+.title{
+font-size:42px;
+font-weight:700;
+margin-top:25px;
+line-height:1.2;
+}
+
+.sub{
+margin-top:14px;
+font-size:16px;
+color:#bcbcbc;
+line-height:1.7;
+}
+
+/* PRICE BOX */
+
+.price-box{
+margin-top:30px;
+padding:25px;
+border-radius:30px;
+background:linear-gradient(145deg,#111,#1a1a1a);
+border:1px solid #2b2b2b;
+text-align:center;
+box-shadow:0 0 35px #ff005520;
+}
+
+.old-price{
+font-size:20px;
+opacity:.4;
+text-decoration:line-through;
+}
+
+.new-price{
+font-size:52px;
+font-weight:700;
+margin-top:5px;
+background:linear-gradient(90deg,#ffcc00,#ff4d6d);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.offer{
+margin-top:10px;
+font-size:16px;
+color:#6dffb0;
+font-weight:600;
+}
+
+/* QR SECTION */
+
+.qr-box{
+margin-top:35px;
+padding:25px;
+background:#111;
+border-radius:35px;
+border:1px solid #262626;
+text-align:center;
+box-shadow:0 0 30px #00000070;
+}
+
+.qr-box img{
+width:100%;
+border-radius:25px;
+border:4px solid #1f1f1f;
+}
+
+.scan-text{
+margin-top:22px;
+font-size:20px;
+font-weight:600;
+}
+
+.scan-sub{
+margin-top:10px;
+color:#bbbbbb;
+line-height:1.7;
+font-size:15px;
+}
+
+/* STEPS */
+
+.steps{
+margin-top:35px;
+}
+
+.step{
+display:flex;
+gap:16px;
+margin-bottom:20px;
+padding:18px;
+background:#111;
+border-radius:22px;
+border:1px solid #222;
+}
+
+.step-number{
+min-width:42px;
+height:42px;
+border-radius:50%;
+background:linear-gradient(90deg,#ff0055,#ffcc00);
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+color:black;
+}
+
+.step-text h3{
+font-size:18px;
+margin-bottom:5px;
+}
+
+.step-text p{
+font-size:14px;
+line-height:1.7;
+color:#bcbcbc;
+}
+
+/* BUTTONS */
+
+.buttons{
+margin-top:35px;
+display:flex;
+flex-direction:column;
+gap:18px;
+}
+
+.btn{
+height:65px;
+border-radius:22px;
+display:flex;
+justify-content:center;
+align-items:center;
+text-decoration:none;
+font-size:18px;
+font-weight:700;
+transition:.3s;
+}
+
+.btn-primary{
+background:linear-gradient(90deg,#ff0055,#ff4d6d);
+color:white;
+box-shadow:0 0 25px #ff005550;
+}
+
+.btn-secondary{
+background:#151515;
+border:1px solid #2b2b2b;
+color:#ffcc00;
+}
+
+/* PAYMENT APPS */
+
+.apps{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+}
+
+.apps div{
+background:#101010;
+padding:14px 18px;
+border-radius:16px;
+border:1px solid #222;
+font-weight:600;
+}
+
+/* SECURITY */
+
+.security{
+margin-top:35px;
+padding:20px;
+border-radius:24px;
+background:#101010;
+border:1px solid #222;
+text-align:center;
+}
+
+.security h3{
+font-size:20px;
+margin-bottom:10px;
+}
+
+.security p{
+color:#bbbbbb;
+line-height:1.7;
+font-size:15px;
+}
+
+/* STICKY */
+
+.sticky{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+padding:15px;
+background:#050505ef;
+backdrop-filter:blur(20px);
+border-top:1px solid #222;
+}
+
+.sticky a{
+display:flex;
+justify-content:center;
+align-items:center;
+height:65px;
+border-radius:22px;
+text-decoration:none;
+font-size:20px;
+font-weight:700;
+background:linear-gradient(90deg,#ffcc00,#ff5e7a);
+color:black;
+box-shadow:0 0 30px #ffcc0050;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+.title{
+font-size:34px;
+}
+
+.new-price{
+font-size:46px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- TOP -->
+
+<div class="top">
+
+<div class="vip-badge">
+VIP PRIVATE ACCESS
+</div>
+
+<div class="title">
+Unlock Premium Private Content
+</div>
+
+<div class="sub">
+Complete payment to get instant VIP access to exclusive premium content, private galleries, and hidden previews.
+</div>
+
+</div>
+
+<!-- PRICE -->
+
+<div class="price-box">
+
+<div class="old-price">
+₹899
+</div>
+
+<div class="new-price">
+₹199
+</div>
+
+<div class="offer">
+83% OFF • Limited Time Offer
+</div>
+
+</div>
+
+<!-- QR -->
+
+<div class="qr-box">
+
+<img src="QR-New.png" alt="QR Payment">
+
+<div class="scan-text">
+Scan & Pay Securely
+</div>
+
+<div class="scan-sub">
+After successful payment, click the button below to continue and access the VIP private section.
+</div>
+
+</div>
+
+<!-- STEPS -->
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">
+1
+</div>
+
+<div class="step-text">
+<h3>Scan QR Code</h3>
+<p>
+Use any UPI app like GPay, PhonePe, Paytm or BHIM to complete payment securely.
+</p>
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">
+2
+</div>
+
+<div class="step-text">
+<h3>Complete Payment</h3>
+<p>
+Pay the VIP access fee and wait a few seconds for confirmation.
+</p>
+</div>
+
+</div>
+
+<div class="step">
+
+<div class="step-number">
+3
+</div>
+
+<div class="step-text">
+<h3>Get Instant Access</h3>
+<p>
+Click continue below and enter the premium private area instantly.
+</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- BUTTONS -->
+
+<div class="buttons">
+
+<a href="YOUR-GROUP-LINK" class="btn btn-primary">
+I HAVE PAID →
+</a>
+
+<a href="index.html" class="btn btn-secondary">
+← BACK TO PREVIEW
+</a>
+
+</div>
+
+<!-- APPS -->
+
+<div class="apps">
+
+<div>GPay</div>
+<div>PhonePe</div>
+<div>Paytm</div>
+<div>UPI</div>
+
+</div>
+
+<!-- SECURITY -->
+
+<div class="security">
+
+<h3>
+🔒 Secure & Private Payment
+</h3>
+
+<p>
+Your payment details remain completely secure and encrypted through trusted UPI services.
+</p>
+
+</div>
+
+</div>
+
+<!-- STICKY -->
+
+<div class="sticky">
+
+<a href="YOUR-GROUP-LINK">
+UNLOCK VIP ACCESS
+</a>
+
+</div>
+
+</body>
+</html>
